@@ -52,7 +52,7 @@ class Insert extends CI_Controller
 
                     if ($a[$i][0]['qty'] < $jumlah[$i]) {
                         $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
-        Qty Tidak Mencukupi haha
+        Qty Tidak Mencukupi
         </div>');
                         redirect(base_url() . "Dokument/cari/");
                     } else {
