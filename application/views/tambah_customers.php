@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                <?= $this->session->flashdata('msg') ?>
+                    <?= $this->session->flashdata('msg') ?>
 
                     <!-- Horizontal Form -->
                     <div class="card card-info">
@@ -35,10 +35,20 @@
                         <?php echo validation_errors(); ?>
                         <?php echo form_open('customers/tambah_customers'); ?>
                         <div class="card-body">
+                            <label for="">Code Customer</label>
+                            <div>
+                                <input type="text" name="kode" required="required" class="form-control col-sm-5" value="CUS<?php echo sprintf("%04s", $kode_customers) ?>" readonly>
+                            </div>
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Customers</label>
                             <div class="form-group row">
                                 <div class="col-sm-5">
                                     <input type="text" name="namacs" class="form-control" id="inputEmail3" placeholder="Nama Customers">
+                                </div>
+                            </div>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Limit Customers</label>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <input type="text" name="limit" class="form-control" id="inputEmail3" placeholder="Limit Customers">
                                 </div>
                             </div>
                             <label class="col-sm-3 col-form-label">Alamat</label>

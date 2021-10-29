@@ -23,8 +23,7 @@
             <div class="navbar-search-block">
                 <form class="form-inline">
                     <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                            aria-label="Search">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-navbar" type="submit">
                                 <i class="fas fa-search"></i>
@@ -91,19 +90,19 @@
                         <li class="nav-item">
                             <a href="<?= base_url() ?>Dokument/barang_masuk" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Input Barang Masuk</p>
+                                <p>Barang Masuk</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url() ?>Dokument/cari" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Input Order</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url() ?>Dokument/surat_jalan" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Input Surat Jalan</p>
+                                <p>Surat Jalan</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
@@ -148,35 +147,23 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url() ?>Dokument/invoice" class="nav-link">
+                            <a href="<?= base_url() ?>Finance/kwitansi" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kwitansi</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?php echo site_url('/Master_item/tambah_item') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Outgoing Payment</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo site_url('/Master_item/tambah_item') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Outstanding Payment</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="<?php echo site_url('/Master_item/tambah_item') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kas Besar</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> -->
+                        <!-- <li class="nav-item">
                             <a href="<?php echo site_url('/Master_item/tambah_item') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Limit Customers</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -189,9 +176,33 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo site_url('/Master_item/tambah_item') ?>" class="nav-link">
+                            <a href="<?php echo site_url('/Klaim/kas_kecil') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kas Kecil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo site_url('/Saldo/saldo_awal') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Saldo Awal Kas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo site_url('/Klaim/klaim_emoney') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Klaim E Money</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo site_url('/Klaim/klaim_cash') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Klaim Cash</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo site_url('/Klaim/list_klaim') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List Klaim</p>
                             </a>
                         </li>
                     </ul>
@@ -206,13 +217,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>Master_item/" class="nav-link">
+                            <a href="<?= base_url(); ?>Master_item/list_item" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List Item</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>Master_item/" class="nav-link">
+                            <a href="<?= base_url(); ?>Master_item/list_stock" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Stock</p>
                             </a>
@@ -271,11 +282,12 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Master Admin
+                            Transaksi
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -283,16 +295,57 @@
                         <li class="nav-item">
                             <a href="index.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan Barang Masuk</p>
+                                <p>List Barang Masuk</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">
+                            <a href="<?= base_url() ?>Transaksi/list_so" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan Sales Order</p>
+                                <p>List S.O</p>
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url() ?>Transaksi/list_sj"" class=" nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List S.J</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>Transaksi/list_invoice" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List Invoice</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Reporting
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>Reporting/order_payment" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pembayaran Customer</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>Reporting/limit_customers" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Limit Customer</p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="<?= base_url() ?>Reporting/limit_customers" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Limit Customer</p>
+                            </a>
+                        </li> -->
+                        <!-- <li class="nav-item">
                             <a href="../../index.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan Surat Jalan</p>
@@ -303,9 +356,9 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan Invoice</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
-                            <a href="<?=base_url('Registrasi')?>" class="nav-link">
+                            <a href="<?= base_url('Registrasi') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Registrasi</p>
                             </a>

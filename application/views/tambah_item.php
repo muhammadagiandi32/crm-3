@@ -51,10 +51,7 @@
                                                 <option value="PCS">PCS</option>
                                             </select>
                                             <!-- <input type="text" name="harga[]" class="form-control" placeholder="Harga"> -->
-                                            <div class="input-group-addon ml-3">
-                                                <a href="javascript:void(0)" class="btn btn-success addMore"><i
-                                                        class="fas fa-plus"></i></a>
-                                            </div>
+                                          
                                         </div>
                                     </div>
 

@@ -13,6 +13,7 @@
                         <li class="breadcrumb-item active">Piutang Customers</li>
                     </ol>
                 </div>
+                <?= $this->session->flashdata('msg'); ?>
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -38,7 +39,7 @@
                                         <th>Tanggal PO</th>
                                         <th>Total Tagihan</th>
                                         <th>Payment</th>
-                                        <th>Outstanding Payment</th>
+                                        <th>Sisa Payment</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -46,22 +47,36 @@
                                     <?php
 
                                     foreach ($query as $row) {
-                                        $outstanding = $row['total_tagihan'] - $row['pembayaran'];
-                                    ?>
-                                    <tr>
-                                        <td><?= $row['nama_customers']; ?></td>
-                                        <td><?= $row['kode_customers']; ?></td>
-                                        <td><?= $row['no_order']; ?></td>
-                                        <td><?= $row['tanggal_order']; ?></td>
-                                        <td>Rp. <?= number_format($row['total_tagihan'], 0); ?></td>
-                                        <td>Rp. <?= number_format($row['pembayaran'], 0); ?></td>
-                                        <td>Rp. <?= number_format($outstanding, 0); ?></td>
 
-                                        <td>
-                                            <a href="<?=base_url('Insert/pembayaran/'.encrypt_url($row['no_order']))?>"
-                                                type="submit"><i class="fas fa-money-check-alt"></i></a>
-                                        </td>
-                                    </tr>
+                                        //   $outstanding = 0;
+                                        $outstanding = $row['total_tagihan'] - $row['pembayaran'];
+                                        $sisapembayaran = $outstanding + $row['pembayaran'];
+
+
+                                    ?>
+                                        <tr>
+                                            <td><?= $row['nama_customers']; ?></td>
+                                            <td><?= $row['kode_customers']; ?></td>
+                                            <td><?= $row['no_order']; ?></td>
+                                            <td><?= $row['tanggal_order']; ?></td>
+                                            <td>Rp. <?= number_format($row['harga'], 0); ?></td>
+                                            <td>Rp. <?= number_format($row['pembayaran'], 0); ?></td>
+                                            <td>
+
+                                                Rp. <?= number_format($sisapembayaran, 0); ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($sisapembayaran < 1) {
+                                                    echo '<div class="alert alert-danger" role="alert">
+                                                            Lunas!
+                                                    </div>';
+                                                } else {
+                                                    echo '<a href="base_url("Insert/pembayaran/" . encrypt_url($row["no_order"])) ?>" type="submit"><i class="fas fa-money-check-alt"></i></a>';
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
                                     <?php
                                     }
                                     ?>

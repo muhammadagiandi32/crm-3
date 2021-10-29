@@ -5,12 +5,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>DataTables</h1>
+          <h1>List Suppliers</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">DataTables</li>
+            <li class="breadcrumb-item"><a href="#">Supplier</a></li>
+            <li class="breadcrumb-item active">List Suppliers</li>
           </ol>
         </div>
       </div>
@@ -25,7 +25,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">DataTable with default features</h3>
+              <h3 class="card-title">List Suppliers</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -35,35 +35,46 @@
                     <th>Kode Supplier </th>
                     <th>Nama Supplier</th>
                     <th>Alamat</th>
+                    <th>Email</th>
                     <th>No Telp</th>
                     <th>Kota</th>
                   </tr>
                 </thead>
                 <tbody>
-                <?php
-                    foreach($query as $row){
-                    ?>
-                  <tr>
-                    <td>
-                    <?= $row['id_suplier']?>
-                    </td>
-                    <td>
-                    <?= $row['nama_suplier']?>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
                   <?php
-                }
-                ?>
+                  foreach ($query as $row) {
+                  ?>
+                    <tr>
+                      <td>
+                        <?= $row['kode_supplier'] ?>
+                      </td>
+                      <td>
+                        <?= $row['nama_supplier'] ?>
+                      </td>
+                      <td>
+                        <?= $row['alamat'] ?>
+                      </td>
+                      <td>
+                        <?= $row['email'] ?>
+                      </td>
+                      <td>
+                        <?= $row['no_tlp'] ?>
+                      </td>
+                      <td>
+                        <?= $row['kota'] ?>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
                 </tbody>
                 <tfoot>
-                <th>Kode Supplier </th>
-                    <th>Nama Supplier</th>
-                    <th>Alamat</th>
-                    <th>No Telp</th>
-                    <th>Kota</th>
+                  <th>Kode Supplier </th>
+                  <th>Nama Supplier</th>
+                  <th>Alamat</th>
+                  <th>Email</th>
+                  <th>No Telp</th>
+                  <th>Kota</th>
                 </tfoot>
               </table>
             </div>

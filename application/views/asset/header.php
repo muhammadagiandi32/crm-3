@@ -21,4 +21,4 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">E
+    <div class="wrapper">

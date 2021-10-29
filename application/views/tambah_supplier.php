@@ -10,8 +10,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">DataTables</li>
+                        <li class="breadcrumb-item"><a href="#">Supplier</a></li>
+                        <li class="breadcrumb-item active"><?= $titel; ?></li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
+                    <?= $this->session->flashdata('msg') ?>
                     <!-- Horizontal Form -->
                     <div class="card card-success">
                         <div class="card-header">
@@ -31,47 +31,49 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal">
-                            <div class="card-body">
-                                <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Customers</label>
-                                <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Nama Customers">
-                                    </div>
-                                </div>
-                                <label class="col-sm-3 col-form-label">Alamat</label>
-                                <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                    </div>
-                                </div>
-                                <label for="inputPassword3" class="col-sm-3 col-form-label">Email</label>
-                                <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <input type="email" class="form-control" id="inputPassword3" placeholder="Email">
-                                    </div>
-                                </div>
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">No Telepon</label>
-                                <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <input type="No Telepon" class="form-control" id="inputPassword3" placeholder="No Telepon">
-                                    </div>
-                                </div>
-                                <!-- <div class="form-group row">
-                                    <div class="offset-sm-2 col-sm-10">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                            <label class="form-check-label" for="exampleCheck2">Remember me</label>
-                                        </div>
-                                    </div>
-                                </div> -->
+                        <?php echo validation_errors(); ?>
+                        <?php echo form_open('supplier/tambah_supplier'); ?>
+                        <div class="card-body">
+                            <label for="">Code Supplier</label>
+                            <div>
+                                <input type="text" name="kode" required="required" class="form-control col-sm-5" value="SUP<?php echo sprintf("%04s", $kode_supplier) ?>" readonly>
                             </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Tambah</button>
-                                <button type="submit" class="btn btn-default float-right">Batal</button>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Supplier</label>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <input type="text" name="namasup" class="form-control" id="inputEmail3" placeholder="Nama Supplier">
+                                </div>
                             </div>
-                            <!-- /.card-footer -->
+                            <label class="col-sm-3 col-form-label">Alamat</label>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <textarea class="form-control" name="alamat" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+                            <label for="email" class="col-sm-3 col-form-label">Email</label>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <input type="email" name="email" class="form-control" id="inputPassword3" placeholder="Email">
+                                </div>
+                            </div>
+                            <label for="notelfon" class="col-sm-2 col-form-label">No Telepon</label>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <input type="number" name="notelfon" class="form-control" id="inputPassword3" placeholder="No Telepon">
+                                </div>
+                            </div>
+                            <label for="kota" class="col-sm-3 col-form-label">Kota</label>
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <input type="text" name="kota" class="form-control" id="kota" placeholder="Kota">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Tambah</button>
+                            <button type="submit" class="btn btn-default float-right">Batal</button>
+                        </div>
+                        <!-- /.card-footer -->
                         </form>
                     </div>
                     <!-- /.card -->
@@ -103,7 +105,8 @@
         //melakukan proses multiple input 
         $(".addMore").click(function() {
             if ($('body').find('.fieldGroup').length < maxGroup) {
-                var fieldHTML = '<div class="form-group fieldGroup">' + $(".fieldGroupCopy").html() + '</div>';
+                var fieldHTML = '<div class="form-group fieldGroup">' + $(".fieldGroupCopy").html() +
+                    '</div>';
                 $('body').find('.fieldGroup:last').after(fieldHTML);
             } else {
                 alert('Maximum ' + maxGroup + ' groups are allowed.');

@@ -2,6 +2,9 @@
 // defined('BASEPATH') or exit('No direct script access allowed');
 // encrypt_url($parameters);
 // decrypt_url($parameters);
+
+use Mpdf\Tag\Div;
+
 class Dokument extends CI_Controller
 {
 
@@ -300,12 +303,6 @@ class Dokument extends CI_Controller
         }
     }
 
-
-
-
-
-
-
     public function surat_jalan()
     {
         $this->load->helper('url');
@@ -316,21 +313,35 @@ class Dokument extends CI_Controller
         $this->load->view('asset/header');
         $this->load->view('asset/sidebar');
 
-
         $this->load->view('surat_jalan', $data);
 
         $this->load->view('asset/footer');
     }
 
-    public function sj($id_order = NULL)
+    public function sj()
     {
-
+        $id_order = $this->uri->segment('3');
         $this->db->set('status', 'SURAT JALAN');
         $this->db->where('id_head_order', $id_order);
         $this->db->update('head_order'); // gives UPDATE `mytable` SET `field` = 'field+1' WHERE `id` = 2
 
-    }
+        $invoice =  $this->db->get_where('head_order', ['id_head_order' => $id_order])->row();
 
+        $no_invoice = substr($invoice->no_order, 2);
+
+        $data = [
+            'no_order' =>      $invoice->no_order,
+            'no_invoice' => 'INV/' . $no_invoice,
+            'date' => date('Y-m-d')
+        ];
+
+        $this->db->insert('invoice', $data);
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">
+  Surat Jalan Berhasil Dijadikan Invoice
+ </div>');
+        redirect(base_url('Dokument/surat_jalan'));
+    }
     public function invoice()
     {
         $this->load->helper('url');
@@ -341,6 +352,7 @@ class Dokument extends CI_Controller
         ON tagihan.no_order = head_order.no_order
         LEFT JOIN customers
         ON customers.kode_customers = `order`.kode_customers
+        WHERE head_order.status = 'SURAT JALAN'
         GROUP BY `order`.no_order
         ")->result_array();
         $data['title'] = 'Surat Jalan';
@@ -354,31 +366,41 @@ class Dokument extends CI_Controller
         $this->load->view('asset/footer');
     }
 
-    public function invoice2(){
-    $id =  decrypt_url($this->input->post('id'));
-    $data['query'] = $this->db->query("SELECT * 
+    public function invoice2()
+    {
+        $id =  decrypt_url($this->input->post('id'));
+        $data['query'] = $this->db->query("SELECT * 
     FROM `order` LEFT JOIN head_order 
         ON `order`.no_order = head_order.no_order
     LEFT JOIN tagihan
         ON tagihan.no_order = head_order.no_order
     LEFT JOIN customers
     ON customers.kode_customers = `order`.kode_customers
+    LEFT JOIN `stok` ON `stok`. `kode_item` = `order`. kode_item 
     WHERE head_order.no_order = '$id'
     ")->row();
 
 
-$data['query2'] = $this->db->query("SELECT * 
-FROM `order` 
-WHERE no_order = '$id'
-")->result_array();
-    $this->load->view('asset/header');
-    $this->load->view('asset/sidebar');
-    $this->load->view('invoice2', $data);
+        $data['query2'] = $this->db->query("SELECT *, `order`.`harga` as `harga` 
+                FROM `order` 
+                LEFT JOIN 
+                `stok` ON `order`.`kode_item` = `stok`.`kode_item`
+                WHERE no_order = '$id'
+                ")->result_array();
+        $data['query3'] = $this->db->query("SELECT *, SUM(`order`.`jumlah`) as `jumlah` 
+                FROM `order` 
+                LEFT JOIN 
+                `stok` ON `order`.`kode_item` = `stok`.`kode_item`
+                WHERE no_order = '$id'
+                ")->row();
+        $this->load->view('asset/header');
+        $this->load->view('asset/sidebar');
+        $this->load->view('invoice2', $data);
 
-    // $this->load->view('asset/footer');
+        // $this->load->view('asset/footer');
     }
-    
-    
+
+
     public function invoice_bayar($id_tagihan = NULL)
     {
         $query = $this->db->query("SELECT * FROM tagihan WHERE `id_order` = '$id_tagihan'")->result_array();
@@ -428,5 +450,14 @@ WHERE no_order = '$id'
         $this->load->view('invoice_print');
         // $this->load->view('asset/footer');
         // echo "haha";
+    }
+
+    public function printSJ()
+    {
+        //semangat lanjutkan terus    
+        $this->load->view('asset/header');
+        $this->load->view('asset/sidebar');
+        $this->load->view('print_sj');
+        $this->load->view('asset/footer');
     }
 }

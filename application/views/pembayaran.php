@@ -38,8 +38,8 @@
                     <!-- form start -->
                     <form id="pembayaran" action="<?=base_url('Insert/pembayaran/').$id?>" method="POST">
                         <?php 
+                        // print_r($query);
                             foreach($query as $row){
-                            
                             ?>
                         <div class="card-body">
                             <div class="form-group">
