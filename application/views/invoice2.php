@@ -250,14 +250,22 @@
                                             <button type="button" onclick="printJS('printJS-table', 'html')">
                                                 Print Form
                                             </button>
-                                            <form action="<?= base_url('Insert/insert_tagihan') ?>" method="POST">
-                                                <!-- // encrypt_url($row['no_order']); -->
-                                                <input type="hidden" name="id" value="<?= encrypt_url($row['no_order']) ?>">
+                                            <?php
+                                            if ($cek > 0) {
+                                                echo '<div class="alert alert-danger float-right" role="alert">
+                                                Close
+                                                </div>';
+                                            } else {
+                                                echo '<form action="' . base_url('Insert/insert_tagihan') . '" method="POST">
+                                                <input type="hidden" name="id" value="' . encrypt_url($row['no_order']) . ' ">
                                                 <button type="submit" class="btn btn-success float-right"><i class="far fa-credit-card"></i>
                                                     Submit
                                                     Tagihan
                                                 </button>
-                                            </form>
+                                            </form>';
+                                            }
+                                            ?>
+
 
                                             <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                                                 <i class="fas fa-download"></i> Generate PDF

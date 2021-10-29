@@ -42,14 +42,7 @@
                                                     <!-- <a href="<?= base_url('Dokument/invoice_bayar'); ?>" class="btn btn-primary p-2"> -->
                                                     UBAH
                                                 </a>
-                                                <!-- href="<?= base_url('Dokument/invoice2'); ?>"  -->
-                                                <form action="<?= base_url('Dokument/invoice2'); ?>" method="POST">
-                                                    <!-- // encrypt_url($row['no_order']); -->
-                                                    <input type="hidden" name="id" value="<?= encrypt_url($row['no_order']) ?>">
-                                                    <button type="submit" class="btn btn-primary p-2">
-                                                        PRINT
-                                                    </button>
-                                                </form>
+                                                <a name="id" class="btn btn-primary" href="<?= base_url('Dokument/invoice2/') . encrypt_url($row['no_order']) ?>">Print</a>
                                             </td>
                                         </tr>
                                     </tbody>

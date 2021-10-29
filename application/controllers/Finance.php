@@ -36,9 +36,10 @@ class Finance extends CI_Controller
         ON a.`kode_customers` = d.`kode_customers`
         LEFT JOIN `pembayaran` e
         ON e.`no_order` = c.`no_order`
+        -- WHERE b.`status` = 'SURAT JALAN'
         GROUP BY e.`no_order`")->result_array();
-        // echo "<pre>";
-        // print_r($data['query']);
+
+        // echo $this->db->last_query();
         // die;
         $this->load->view('asset/header');
         $this->load->view('asset/sidebar');

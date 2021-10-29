@@ -346,7 +346,7 @@ class Dokument extends CI_Controller
     {
         $this->load->helper('url');
 
-        $data['query'] = $this->db->query("SELECT *, `order`.`no_order` as `no_order` FROM `order` LEFT JOIN head_order 
+        $data['query'] = $this->db->query("SELECT *,SUM(`order`.`harga`) as `harga`, `order`.`no_order` as `no_order` FROM `order` LEFT JOIN head_order 
         ON `order`.no_order = head_order.no_order
         LEFT JOIN tagihan
         ON tagihan.no_order = head_order.no_order
@@ -354,6 +354,7 @@ class Dokument extends CI_Controller
         ON customers.kode_customers = `order`.kode_customers
         WHERE head_order.status = 'SURAT JALAN'
         GROUP BY `order`.no_order
+        ORDER BY `order`.no_order DESC
         ")->result_array();
         $data['title'] = 'Surat Jalan';
         $this->load->helper('url');
@@ -368,7 +369,9 @@ class Dokument extends CI_Controller
 
     public function invoice2()
     {
-        $id =  decrypt_url($this->input->post('id'));
+        $id =  decrypt_url($this->uri->segment(3));
+        // echo $id;
+        // die;
         $data['query'] = $this->db->query("SELECT * 
     FROM `order` LEFT JOIN head_order 
         ON `order`.no_order = head_order.no_order
@@ -393,6 +396,8 @@ class Dokument extends CI_Controller
                 `stok` ON `order`.`kode_item` = `stok`.`kode_item`
                 WHERE no_order = '$id'
                 ")->row();
+        $data['cek'] = $this->db->get_where('tagihan', ['no_order' => $id])->num_rows();
+
         $this->load->view('asset/header');
         $this->load->view('asset/sidebar');
         $this->load->view('invoice2', $data);

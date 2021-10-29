@@ -52,7 +52,8 @@
                                         $outstanding = $row['total_tagihan'] - $row['pembayaran'];
                                         $sisapembayaran = $outstanding + $row['pembayaran'];
 
-
+                                        echo $sisapembayaran;
+                                        // die;
                                     ?>
                                         <tr>
                                             <td><?= $row['nama_customers']; ?></td>
@@ -62,7 +63,6 @@
                                             <td>Rp. <?= number_format($row['harga'], 0); ?></td>
                                             <td>Rp. <?= number_format($row['pembayaran'], 0); ?></td>
                                             <td>
-
                                                 Rp. <?= number_format($sisapembayaran, 0); ?>
                                             </td>
                                             <td>
@@ -72,7 +72,7 @@
                                                             Lunas!
                                                     </div>';
                                                 } else {
-                                                    echo '<a href="base_url("Insert/pembayaran/" . encrypt_url($row["no_order"])) ?>" type="submit"><i class="fas fa-money-check-alt"></i></a>';
+                                                    echo '<a href="' . base_url("Insert/pembayaran/" . encrypt_url($row["no_order"])) . '" type="submit"><i class="fas fa-money-check-alt"></i></a>';
                                                 }
                                                 ?>
                                             </td>
